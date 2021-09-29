@@ -3,6 +3,12 @@ from .models import Post, Author, Tag
 
 # Register your models here.
 
-admin.site.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    # set up by which fields should be able to fileter.
+    list_filter = ("author", "tags", "date")
+    list_display = ("title", "date", "author")
+    prepopulated_fields = {"slug": ("title",)}
+
+admin.site.register(Post, PostAdmin)
 admin.site.register(Author)
 admin.site.register(Tag)
