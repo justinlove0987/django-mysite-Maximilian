@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DeleteView
 
 from .models import Post
+from .forms import Comment, CommentForm
 
 
 class StartingPageView(ListView):
@@ -29,6 +30,7 @@ class SinglePostView(DeleteView):
       context_object_name = "post"
 
       def get_context_data(self, **kwargs):
-          cotext = super().get_context_data(**kwargs)
-          cotext["post_tags"] = self.object.tags.all()
-          return cotext
+          context = super().get_context_data(**kwargs)
+          context["post_tags"] = self.object.tags.all()
+          context["comment_form"] = CommentForm
+          return context
