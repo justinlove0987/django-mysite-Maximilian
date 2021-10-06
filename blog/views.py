@@ -32,7 +32,7 @@ class SinglePostView(View):
             post = Post.objects.get(slug=slug)
             context = {
                   "post": post,
-                  "post_tages": post.tags.all(),
+                  "post_tags": post.tags.all(),
                   "comment_form": CommentForm(),
                   "comments": post.comments.all().order_by("-id")
             }
@@ -53,8 +53,12 @@ class SinglePostView(View):
             
             context = {
                   "post": post,
-                  "post_tages": post.tags.all(),
+                  "post_tags": post.tags.all(),
                   "comment_form": comment_form,
                   "comments": post.comments.all().order_by("-id")
             }
             return render(request, "blog/post-detail.html", context)
+
+class ReadLaterView(View):
+      def post(self, request):
+            pass
