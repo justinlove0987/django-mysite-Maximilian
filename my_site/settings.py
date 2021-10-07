@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+# environmnet variable are simply global variables.
+from os import getenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # the secret key is used internally by django -
 # - for asigning cookies and for security aspects in gerneral.
+# getenv("SECRET_KEY")
 SECRET_KEY = 'django-insecure-s$^tz@jpm!c*zbbqs8&*eo%-)hhdl4fo$g3oh*n$6dj-l!sk20'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = getenv("IS_PRODUCTION", True)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    getenv("APP_HOST")
+]
 
 
 # Application definition
