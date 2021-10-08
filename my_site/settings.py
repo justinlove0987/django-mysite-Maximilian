@@ -161,9 +161,15 @@ AWS_ACCESS_KEY_ID = "AKIATWVFOWI7IN4CDU6L"
 AWS_SECRET_ACCESS_KEY = "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"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 
+# static's folder name is up to us, a folder which will be created in our S3 bucket -
+# - automatically once we collect all static files.
+STATICFILES_FOLDER = "static"
+MEDIAFILES_FOLDER = "media"
+
+
 # Default: 'django.contrib.staticfiles.storage.StaticFilesStorage'
-STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STATICFILES_STORAGE = "custom_storages.StaticFileStorage"
 # works for media files.
-DEFAULT_FILE_STORAGE = 
+DEFAULT_FILE_STORAGE = "custom_storages.MediaFileStorage"
 
 
