@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'blog',
+    'storages',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -151,3 +152,18 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = BASE_DIR / "uploads"
 MEDIA_URL = "/files/"
+
+# we need to add a couple of AWS specific settings which will be picked up soon by the boto3 package - 
+# - to tell Django and python how to communicate with our AWS account.
+AWS_STORAGE_BUCKET_NAME = "django-blog-by-justin"
+AWS_S3_REGION_NAME = "us-east-2"
+AWS_ACCESS_KEY_ID = "AKIATWVFOWI7IN4CDU6L"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+# Default: 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+# works for media files.
+DEFAULT_FILE_STORAGE = 
+
+
